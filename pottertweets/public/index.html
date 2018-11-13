@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="potterApp">
+
+<head>
+    <title>Wizard Tweets</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="javascripts/comments.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<body ng-controller="PotterController">
+    <div id="introPage">
+        <div id="title">Welcome to the Hogwarts Twitter Page</div>
+        <div id="characters">
+            <span id="instructions">Select a character to tweet as:</span><br>
+            <table>
+                <tr>
+                    <td id="potter">Harry<br><img src="images/potter.png" class="logo"></td>
+                    <td id="weasley">Ron<br><img src="images/weasley.png" class="logo"></td>
+                    <td id="granger">Hermione<br><img src="images/granger.png" class="logo"></td>
+                    <td id="dumbledore">Dumbledore<br><img src="images/dumbledore.png" class="logo"></td>
+                </tr>
+                <tr>
+                    <td id="voldemort">Voldemort<br><img src="images/voldemort.png" class="logo"></td>
+                    <td id="hagrid">Hagrid<br><img src="images/hagrid.png" class="logo"></td>
+                    <td id="snape">Snape<br><img src="images/snape.png" class="logo"></td>
+                    <td id="malfoy">Malfoy<br><img src="images/malfoy.png" class="logo"></td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div id="customUser">
+            Or, choose your own:<br><br> Name: <input type="text" id="userName" placeholder="name"><br>
+            Picture URL: <input type="text" id="userURL" placeholder="url"><br>
+            <button id="customSubmit">Submit</button>
+        </div>
+    </div>
+
+
+    <div id="tweetboard">
+        <!--
+        <div id="left">
+            <div style="height: 5px"></div>
+            <button id="backToUsers">Select different user</button>
+            <div id="userImageDiv">
+                <img id="userImage" src="https://ask.libreoffice.org/m/default/media/images/nophoto.png?v=20"><br>
+            </div><br>
+            <div id="userInfo"><span id="user_name"></span><br>
+                <span id="house">unknown house</span></div>
+            <textarea id="comment" placeholder="Comment" rows="4" cols="20"></textarea><br>
+            <button id="postComment">Post Tweet</button>
+        </div>
+-->
+        <div id="right" ng-init="init()">
+            <div id="titleBar">
+                Hogwarts Twitter Feed
+            </div>
+            <div id="middle">
+                <button id="backToUsers">Select different user</button>
+                <button id="getComments" ng-click="getAllComments()">Refresh/All Tweets</button>
+                <button id="sortByNew" ng-click="sortByNew()">Sort by New</button>
+                <button id="sortByLikes" ng-click="sortByLikes()">Sort By Likes</button>
+                <!--<button id="deleteComments">Delete All</button>-->
+            </div>
+            <div id="bottom">
+                <div id="commenter">
+                    <table>
+                        <tr>
+                            <td class="imgTD"><img src="{{userURL}}" id="userImage" class="commentImg"></td>
+                            <td class="commentTD"><span class="nameSays">{{username}} says...</span><br><textarea id="comment" placeholder="Comment" rows="3" cols="74" maxlength="500"></textarea><br>
+                                <button id="postComment">Post Tweet</button></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="comments">
+                    <div ng-repeat="x in comments | orderBy: propertyName | limitTo: quantity" class="oneComment">
+                        <table>
+                            <tr>
+                                <td class="imgTD">
+                                    <img src="{{x.URL}}" class="commentImg">
+                                </td>
+                                <td class="commentTD">
+                                    <div class="commentWordWrap"><span class="nameSays">{{x.Name}} says..<span ng-click="deletePost(x._id)">.</span></span><br>{{x.Comment}}</div>
+                                </td>
+                                <td class="likes">
+                                    {{x.Likes}}<br>
+                                    <img src="images/thumbsup.png" class="thumbsup" ng-click="addLikes(x._id)">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
