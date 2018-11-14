@@ -61,7 +61,7 @@ button {
 }
 
 #tweetboard {
-  display: none;
+  /*display: none;*/
 }
 
 #titleBar {
@@ -73,6 +73,10 @@ button {
   background-image: url("https://us.123rf.com/450wm/bezyanova/bezyanova1610/bezyanova161000052/66783843-vector-seamless-pattern-for-background-repeating-square-abstract-background-abstract-red-wood-patter.jpg?ver=6");
   background-size: contain;
   color: white;
+}
+
+#getComments {
+  background-color: #a7efb0;
 }
 
 #left {
@@ -101,6 +105,7 @@ button {
   text-align: center;
   min-height: 100vh;
   background-color: #efecaa;
+  background-image: url("../images/stars.jpg");
 }
 
 #middle {
@@ -123,12 +128,16 @@ button {
   padding: 2vh;
   margin-bottom: 2vh;
   display: inline-block;
+  background-color: #d2daf7;
+  border-color: #4b5460;
 }
 
 .oneComment {
   width: 70vw;
   border-style: solid;
+  border-color: #4b5460;
   border-radius: 10%;
+  background-color: #e8ecf2;
   padding: 2vh;
   margin-bottom: 2vh;
   overflow-y: auto;
@@ -188,7 +197,6 @@ button {
   border-radius: 15%;
   padding: 10px;
 }*/
-
 
 .commentTD {
   text-align: left;

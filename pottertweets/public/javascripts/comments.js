@@ -1,46 +1,57 @@
+/*global $*/
+/*global angular*/
 var firstApp = angular.module('potterApp', []);
 firstApp.controller('PotterController', function($scope, $interval) {
 
     $scope.username;
     $scope.userURL;
     $scope.propertyName = '-DateCreated';
-    $scope.quantity = 5;
+    //$scope.quantity = 5;
 
-    $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-            if ($scope.quantity < $scope.comments.length) {
-                $scope.quantity++;
-                $scope.comments = $scope.comments;
-            }
-        }
-    });
+    /* $(window).scroll(function() {
+         if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+             if ($scope.quantity < $scope.comments.length) {
+                 $scope.quantity++;
+                 $scope.comments = $scope.comments;
+             }
+         }
+     });
+     */
 
+    $scope.comments = [];
 
+    function setComments(data) {
+        console.log("in setComments()");
+        $scope.$apply($scope.comments = data);
+        console.log("scope.comments in setComments()", $scope.comments);
+    }
+    
     $.getJSON('comment', function(data) {
-        $scope.comments = data;
-        console.log("scope.comments = ", $scope.comments);
+
+        setComments(data);
+        //console.log("scope.comments = ", $scope.comments);
         //printComments(data);
     });
+
+
 
 
     $scope.getAllComments = function() {
         console.log("in getAllComments function");
         $.getJSON('comment', function(data) {
-            $scope.comments = data;
-            console.log("scope.comments = ", $scope.comments);
+            console.log("data = ", data);
+            setComments(data);
+            //console.log("scope.comments = ", $scope.comments);
             //printComments(data);
         });
-    }
+    };
     $scope.deletePost = function(postNum) {
         console.log(postNum);
         $.ajax({
             url: 'deletecomment',
             type: "DELETE",
             data: { "postID": postNum },
-            success: function() {
-                $scope.getAllComments();
-                console.log("success");
-            }
+            success: $scope.getAllComments
         });
     }
 
@@ -52,16 +63,13 @@ firstApp.controller('PotterController', function($scope, $interval) {
             data: { "postID": postNum },
             success: function() {
                 console.log("success");
-                $scope.comments.find(x => x._id === postNum).Likes++;
+                $scope.getAllComments();
+                console.log($scope.comments);
+                //$scope.comments.find(x => x._id === postNum).Likes++;
             }
         })
-    }
 
-    $scope.init = function() {
-        console.log("in init()");
-        $scope.getAllComments();
-        $scope.getAllComments();
-        $scope.getAllComments();
+
     }
 
     /*function printComments(data) {
@@ -88,6 +96,7 @@ firstApp.controller('PotterController', function($scope, $interval) {
 
     function newPageLoad() {
         console.log("in newPageLoad function");
+        $scope.$digest();
     }
 
 

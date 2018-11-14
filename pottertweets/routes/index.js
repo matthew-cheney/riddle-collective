@@ -32,8 +32,10 @@ router.post('/comment', function(req, res, next) {
     console.log(newcomment);
     newcomment.save(function(err, post) {
         if (err) return console.error(err);
-        console.log(post);
-        res.sendStatus(200);
+        else {
+            console.log(post);
+            res.sendStatus(200);
+        }
     });
 });
 
@@ -42,8 +44,10 @@ router.get('/comment', function(req, res, next) {
     console.log("In the GET route");
     Comment.find(function(err, list) {
         if (err) console.log(err);
-        console.log(list);
-        res.json(list);
+        else {
+            console.log(list);
+            res.json(list);
+        }
     });
 });
 
@@ -51,8 +55,9 @@ router.get('/search', function(req, res, next) {
     console.log(req.query.q);
     Comment.find({ Name: req.query.q }, function(err, list) {
         if (err) console.log(err);
-        //console.log(list);
-        res.json(list);
+        else {
+            res.json(list);
+        }
     });
 });
 
@@ -63,7 +68,9 @@ router.post('/addlikes', function(req, res, next) {
 
     Comment.findOneAndUpdate(myQuery, { $inc: { 'Likes': 1 } }, function(err) {
         if (err) throw err;
-        res.sendStatus(200);
+        else {
+            res.sendStatus(200);
+        }
     });
 
 });
@@ -72,7 +79,12 @@ router.delete('/deletecomment', function(req, res, next) {
     console.log("in delete comments route");
     var myQuery = { _id: mongoose.Types.ObjectId(req.body.postID) };
     console.log("deleting element: ", myQuery);
-    Comment.deleteOne(myQuery, function(err) {});
+    Comment.deleteOne(myQuery, function(err) {
+        if (err) throw err;
+        else {
+            res.sendStatus(200);
+        }
+    });
 
     //db.dropDatabase(function(err) {
     //    if (err) console.log(err);

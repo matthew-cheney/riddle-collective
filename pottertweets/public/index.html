@@ -31,8 +31,7 @@
         </div>
         <br>
         <div id="customUser">
-            Or, choose your own:<br><br> Name: <input type="text" id="userName" placeholder="name"><br>
-            Picture URL: <input type="text" id="userURL" placeholder="url"><br>
+            Or, choose your own:<br><br> Name: <input type="text" id="userName" placeholder="name"><br> Picture URL: <input type="text" id="userURL" placeholder="url"><br>
             <button id="customSubmit">Submit</button>
         </div>
     </div>
@@ -52,7 +51,7 @@
             <button id="postComment">Post Tweet</button>
         </div>
 -->
-        <div id="right" ng-init="init()">
+        <div id="right">
             <div id="titleBar">
                 Hogwarts Twitter Feed
             </div>
@@ -74,7 +73,7 @@
                     </table>
                 </div>
                 <div id="comments">
-                    <div ng-repeat="x in comments | orderBy: propertyName | limitTo: quantity" class="oneComment">
+                    <div ng-repeat="x in comments | orderBy: propertyName" class="oneComment">
                         <table>
                             <tr>
                                 <td class="imgTD">
