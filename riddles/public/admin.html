@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="riddleApp">
+
+<head>
+    <title>Riddles</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="javascripts/comments.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<body ng-controller="RiddleController">
+
+    Riddles
+
+    <form ng-submit="addRiddle()">
+        <input type="text" ng-model="formRiddle"></input>
+        <input type="text" ng-model="formAnswer"></input>
+        <button type="submit">Add Riddle</button>
+    </form>
+    <div ng-repeat="x in riddles">
+        {{x.Riddle}} - - - {{x.Answer}}<br>
+        <span ng-click="addCorrect(x)">+</span>{{x.Correct}}<br>
+        <span ng-click="addWrong(x)">-</span>{{x.Wrong}}<br>
+        <button ng-click="deleteRiddle(x)">Delete</button><br><br>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="riddleApp">
+
+<head>
+    <title>Riddles</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="javascripts/comments.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+
+<body ng-controller="RiddleController">
+    <div id="addRiddleDiv"><a href="addRiddle.html"><button>Add Riddle</button></a></div>
+    <div id="title">The Riddle Collective</div>
+    <div id="sortButtons"><a href="index.html?sort=hardest"><button ng-click="hardestFirst()">Hardest First</button></a><a href="index.html?sort=easiest"><button ng-click="easiestFirst()">Easiest First</button></a><a href="index.html?sort=newest"><button ng-click="newestFirst()">Newest First</button></a></div>
+    <div id="scrollHolder">
+        <div class="totalRiddleWindow" ng-repeat="x in riddles | orderBy: orderVar | limitTo: quantity">
+            <div class="riddleWindow">
+                {{x.Riddle}}<br>
+                    <button type="submit" id="answerButton" ng-click="showAnswers = true">Show Answer</button>
+                    <button ng-click="skipRiddle(x); showScroll = true" id="skipButton">Skip</button>
+                    <div class="answers" ng-show="showAnswers">
+                        {{x.Answer}}
+                        <hr>
+                        <div style="text-align: center"><span style="color: #f4f6f7"><b>{{x.Percentage}}%</b></span> of people got that right.</div>
+                        Did you?<br>
+                        <button ng-click="addCorrect(x); showScroll = true" id="yesButton">Yes</button><button ng-click="addWrong(x); showScroll = true" id="noButton">No</button>
+                    </div>
+            </div>
+            <div class="bottomSpace">
+                <div class="scrollDown" ng-show="showScroll" id="scrollMessage">scroll down</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

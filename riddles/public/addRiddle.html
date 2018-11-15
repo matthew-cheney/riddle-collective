@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="riddleApp">
+
+<head>
+    <title>Riddles</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="javascripts/comments.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/addRiddle.css">
+</head>
+
+<body ng-controller="RiddleController">
+
+    <div id="backDiv"><a href="index.html"><button>Back to Riddles</button></a></div>
+    <div id="title">The Riddle Collective</div>
+
+    <div id="totalRiddles">Total riddles: {{numRiddles}}</div>
+
+    <form ng-submit="addRiddle()">
+        <textarea rows="4" cols="60" ng-model="formRiddle" placeholder="enter riddle here"></textarea><br>
+        <textarea rows="2" cols="60" ng-model="formAnswer" placeholder="enter answer here"></textarea><br>
+        <button type="submit">Add Riddle</button>
+    </form>
+
+
+</body>
+
+</html>
