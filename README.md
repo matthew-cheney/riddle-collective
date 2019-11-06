@@ -1,4 +1,4 @@
-#The Riddle Collective
+A web app for sharing riddles. All riddles are user submitted.
 
 This app requires npm and mongoDB.
 
